@@ -1,2 +1,76 @@
 # Algorithms-for-classification-problems
-Study of different machine learning algorithms for classification problems.
+
+## Описание проекта
+Этот проект включает три задачи машинного обучения:
+1. **Обнаружение фейковых новостей** с использованием `PassiveAggressiveClassifier`.
+2. **Диагностика болезни Паркинсона** с помощью `XGBoost`.
+3. **Прогнозирование поведения пользователей мобильных устройств** с использованием `RandomForestClassifier`, `GradientBoostingClassifier`, `MLPClassifier` и `SVC`.
+
+---
+
+## 1. Обнаружение фейковых новостей
+
+### Описание
+Модель обучается на текстах новостей и определяет, является ли новость фейковой или настоящей.
+
+### Данные
+- **Источник**: [Yandex Cloud Storage](https://storage.yandexcloud.net/academy.ai/practica/fake_news.csv)
+- **Структура**:
+  - `title`: заголовок новости.
+  - `text`: текст новости.
+  - `label`: метка (`FAKE` или `REAL`).
+
+### Этапы работы
+1. **Загрузка и предобработка данных**:
+   - Удаление дубликатов.
+   - Разделение на обучающую, валидационную и тестовую выборки.
+2. **Визуализация**:
+   - Соотношение классов в датасете.
+3. **Модель**:
+   - Используется `PassiveAggressiveClassifier` с `TfidfVectorizer`.
+4. **Результаты**:
+   - Точность на тестовой выборке: **92.97%**.
+
+---
+
+## 2. Диагностика болезни Паркинсона
+
+### Описание
+Модель анализирует голосовые характеристики пациентов и определяет наличие болезни Паркинсона.
+
+### Данные
+- **Источник**: [Yandex Cloud Storage](https://storage.yandexcloud.net/academy.ai/practica/parkinsons.data)
+- **Структура**:
+  - 23 признака, связанных с голосом.
+  - `status`: метка (1 — болен, 0 — здоров).
+
+### Этапы работы
+1. **Предобработка**:
+   - Извлечение числовых признаков из имени записи.
+   - Стандартизация данных.
+2. **Модель**:
+   - `XGBClassifier` с `StandardScaler`.
+3. **Результаты**:
+   - Точность на тестовой выборке: **100%**.
+
+---
+
+## 3. Прогнозирование поведения пользователей мобильных устройств
+
+### Описание
+Анализ данных об использовании мобильных устройств для прогнозирования класса поведения пользователей.
+
+### Данные
+- **Источник**: [Kaggle](https://www.kaggle.com/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset)
+- **Структура**:
+  - `User ID`, `Device Model`, `Operating System`, `App Usage Time`, `Screen On Time`, `Battery Drain`, `Number of Apps Installed`, `Data Usage`, `Age`, `Gender`, `User Behavior Class`.
+
+### Этапы работы
+1. **Визуализация**:
+   - Гистограммы и тепловая карта корреляций.
+2. **Модели**:
+   - `GradientBoostingClassifier`, `RandomForestClassifier`, `SVC`, `MLPClassifier`.
+3. **Результаты**:
+   - Лучшие модели (`GradientBoosting`, `SVC`, `RandomForest`) показали точность **100%** на тестовой выборке.
+
+---
